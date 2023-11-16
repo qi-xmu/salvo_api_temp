@@ -8,7 +8,7 @@ mod schema;
 
 #[endpoint(
     tags("User"),
-    security(("bearer" = ["read", "write"]))
+    security(("bearer" = []))
 )]
 async fn create_user(user_info: FormBody<schema::UserInfo>) -> AppResult<Json<schema::UserInfo>> {
     let user_info = user_info.into_inner();
@@ -17,7 +17,7 @@ async fn create_user(user_info: FormBody<schema::UserInfo>) -> AppResult<Json<sc
 
 #[endpoint(
     tags("User"),
-    security(("bearer" = ["read", "write"]))
+    security(("bearer" = []))
 )]
 async fn get_user() -> &'static str {
     "Get User"
@@ -25,7 +25,7 @@ async fn get_user() -> &'static str {
 
 #[endpoint(
     tags("User"),
-    security(("bearer" = ["read", "write"]))
+    security(("bearer" = []))
 )]
 async fn update_user() -> &'static str {
     "Update User"
@@ -33,7 +33,7 @@ async fn update_user() -> &'static str {
 
 #[endpoint(
     tags("User"),
-    security(("bearer" = ["read", "write"]))
+    security(("bearer" = []))
 )]
 async fn delete_user() -> &'static str {
     "Delete User"
