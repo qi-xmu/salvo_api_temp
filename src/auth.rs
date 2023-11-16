@@ -1,4 +1,5 @@
 use salvo::jwt_auth::{ConstDecoder, HeaderFinder};
+use salvo::oapi::security::*;
 use salvo::prelude::*;
 use serde::{Deserialize, Serialize};
 
@@ -17,6 +18,13 @@ pub(crate) fn get_auth_handle() -> JwtAuth<JwtClaims, ConstDecoder> {
             .finders(vec![Box::new(HeaderFinder::new())])
             .force_passed(true);
     auth_handler
+}
+
+pub(crate) fn get_bearer_schema() -> SecurityScheme {
+    let bearer_auth = Http::new(HttpAuthScheme::Bearer)
+        .bearer_format("JWT")
+        .description("Header Authorization");
+    SecurityScheme::Http(bearer_auth)
 }
 
 pub struct CheckAuthed;
